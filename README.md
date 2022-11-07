@@ -1,2 +1,1 @@
-# code-snippets-recommender
-code snippet recommender
+# code-snippet

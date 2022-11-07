@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Code Snippet</title>
+  <link rel="stylesheet" href="../static/css/uploadformstyle.css">
+</head>
+<body>
+
+<h2>Upload Code Snippet</h2>
+<h3>Please follow below rules: </h3>
+<h4>List of rules.</h4>
+<p>1. Write keywords as comma separated words.</p>
+
+<div class="container">
+  <form name="upload_form">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">KeyWords</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="keywords" name="keywords" placeholder="Write keywords here...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Code Snippet</label>
+      </div>
+      <div class="col-75">
+        <textarea id="codesnippet" name="codesnippet" placeholder="Write code here..." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Add" class="btn">
+    </div>
+  </form>
+</div>
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/scripts.js"></script>
+
+</body>
+</html>
