@@ -12,6 +12,11 @@ def login():
   print("login called")
   return render_template('login.html'), 200
 
+@app.route('/signup', methods=['GET'])
+def sigunp():
+  print("sigup called")
+  return render_template('login.html'), 200
+
 @app.route('/auth', methods=['POST'])
 def auth():
   print("auth called")
