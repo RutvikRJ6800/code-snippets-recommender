@@ -38,14 +38,27 @@ class Snippet:
     -----------------------------------"""
   def search(self, query):
     item_details = db.snippets.find()
-    # 
-    #  add proper search functionality here
-    # 
+    session['query'] = query
+
+    q = query.split(' ')
+    print(q)
+
     snippet = []
     print("type:item_details:", type(item_details), "type:item:", type(item_details[0]))
     for item in item_details:
-      # This does not give a very readable output
-      print(item)
-      snippet.append(item)
-
-    return render_template('home.html', codesnippets=snippet)
+      for i in q:
+        if i.lower() in item['keywords'] and len(i) > 2:
+          snippet.append(item)
+          break
+      # if query in item['keywords']:
+      #   snippet.append(item)
+      # for keyword in item['keywords']:
+      #   if keyword.find(query) or query.find(keyword):
+      #     print(item['codeSnippet'])
+      #     snippet.append(item)
+      #     break
+      # snippet.append(item)
+    
+    print(query)
+    snippet.reverse()
+    return render_template('home.html', codesnippets=snippet , query_input=query)

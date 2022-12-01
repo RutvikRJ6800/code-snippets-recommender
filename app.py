@@ -17,21 +17,25 @@ try:
 except:
     print("Error in db connection")
 
+# @app.route('/')
+# def home():
+#   return "Hello world"
+
 
 # Routes
 from user import routes
 from codesnippet import routes
 
 # Decorators
-def login_required(f):
-  @wraps(f)
-  def wrap(*args, **kwargs):
-    if 'logged_in' in session:
-      return f(*args, **kwargs)
-    else:
-      return redirect('/')
+# def login_required(f):
+#   @wraps(f)
+#   def wrap(*args, **kwargs):
+#     if 'logged_in' in session:
+#       return f(*args, **kwargs)
+#     else:
+#       return redirect('/')
   
-  return wrap
+#   return wrap
 
 @app.route('/')
 def home():

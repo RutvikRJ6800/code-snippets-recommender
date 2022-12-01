@@ -1,9 +1,21 @@
 import flask
 from app import app, render_template
 from user.models import User
+from functools import wraps
+from flask import session, redirect
+
+def login_required(f):
+  @wraps(f)
+  def wrap(*args, **kwargs):
+    if 'logged_in' in session:
+      return f(*args, **kwargs)
+    else:
+      return redirect('/login')
+  
+  return wrap
 
 @app.route('/register', methods=['POST'])
-def signup():
+def register():
   print("signup called")
   return User().signup()
 
@@ -13,9 +25,9 @@ def login():
   return render_template('login.html'), 200
 
 @app.route('/signup', methods=['GET'])
-def sigunp():
-  print("sigup called")
-  return render_template('login.html'), 200
+def signup():
+  print("signup called")
+  return render_template('signup.html'), 200
 
 @app.route('/auth', methods=['POST'])
 def auth():
@@ -25,6 +37,7 @@ def auth():
 
 
 @app.route('/dashboard', methods=['GET'])
+@login_required
 def dashboard():
   return render_template('newHome.html')
 
