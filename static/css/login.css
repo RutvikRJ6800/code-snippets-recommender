@@ -1,0 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(image\ 1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box {
+    background-color: black;
+    opacity: 0.8;
+}
+
+.info {
+    color: white;
+}

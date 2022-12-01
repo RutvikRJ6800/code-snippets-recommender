@@ -1,26 +1,106 @@
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="../static/css/monokai.css" rel="stylesheet" type="text/css"> -->
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Code Snippet Recommender</title>
 </head>
+
 <body>
-    <div class="container-fluid bg-secondary">
+    <div class="container-fluid d-flex flex-column">
+        <div class="navbar row">
+            <div class="title">
+                <a href="/">CODE SNIPPET RECOMMENDER</a>
+            </div>
+
+            {% if session['logged_in'] %}
+            <div class="nav-item dropdown mr-2">
+                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
+                    {{ session['user'].name }} <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="/dashboard/upload" class="dropdown-item"><i class="fa fa-user-o"></i> Upload</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/" class="dropdown-item" id="logoutbtn"><i class="fa fa-sign-out"></i> Logout</a>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="nav-item">
+                <a href="/login"><i class="fa fa-user-o pr-2"></i> Login</a>
+            </div>
+
+            {% endif %}
+        </div>
+
+        <div class="centerBody">
+            <form role="form" method="get" action="/search">
+                <div class="d-flex flex-row">
+                    <div>
+                        {% if query_input|length %}
+                        <input type="search" class="form-control rounded" placeholder="Enter your query" id="query"
+                            name="query" aria-label="Search" aria-describedby="search-addon"
+                            value='{{ query_input }}' />
+                        {% else %}
+                        <input type="search" class="form-control rounded" placeholder="Enter your query" id="query"
+                            name="query" aria-label="Search" aria-describedby="search-addon" value="" />
+                        {% endif %}
+                    </div>
+                    <div>
+                        <button onclick="location.href='/login'" type="submit"><i
+                                class="fa fa-search pr-2"></i>Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="code_snippets">
+            {% if query_input|length %}
+            {% if codesnippets %}
+            {% for codesnippet in codesnippets %}
+            <div class="d-flex flex-col code_row">
+                <div class="col">
+                    <pre class="prettyprint code">{{ codesnippet["codeSnippet"] }}</pre>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="details my-auto">
+                        <div class="small">Uploaded On: {{ codesnippet["uploadedOn"] }} </div>
+                        <div class="small">Uploaded By: {{ codesnippet["username"] }} </div>
+                        <div class="small">Tags: {{ codesnippet["keywords"] }} </div>
+                    </div>
+                    <!-- <button id="copy">Copy</button> -->
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="no_result">Oops , no results to display :(</div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+
+    <!-- Rutvik's code -->
+    <!-- <div class="container-fluid bg-secondary">
         <div class="row">
             <div class="col-10">
-                <h1 class="text-center">Home Page</h1>
+                <h1 id="title">CODE SNIPPET RECOMMENDER</h1>
             </div>
             <div class="col-1">
-                <button id = "loginbtn" onclick="location.href='/login'" class="btn btn-md btn-primary text-center">
+                <button id="loginbtn" onclick="location.href='/login'" class="btn btn-md btn-primary text-center">
                     Login
                 </button>
             </div>
         </div>
-        
+
     </div>
     <br><br>
 
@@ -32,19 +112,19 @@
             <div class="col-6" style="padding-left: 20px;">
                 <div class="input-group col-16">
                     <form role="form" method="get" action="/search">
-                    <input type="search" class="form-control rounded" placeholder="Enter query" aria-label="Search"
-                    id="query" name="query" aria-describedby="search-addon" />
-                    <button type="submit" class="btn btn-outline-primary">search</button>
+                        <input type="search" class="form-control rounded" placeholder="Enter query" aria-label="Search"
+                            id="query" name="query" aria-describedby="search-addon" />
+                        <button type="submit" class="btn btn-outline-primary">search</button>
                     </form>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
-        <div>
+    <div>
         {% for codesnippet in codesnippets %}
-    
+
         <div>
             <h4>keywords: {{ codesnippet["tags"] }} </h4>
             <h4>uploadedOn: {{ codesnippet["uploadedOn"] }} </h4>
@@ -53,11 +133,11 @@
             <pre class="prettyprint">{{ codesnippet["codeSnippet"] }}</pre>
         </div>
         {% endfor %}
-    </div>
+    </div> -->
 
     <!-- <script src="../static/js/rainbow-custom.min.js"></script>
     <script src="../static/js/generic.js"></script> -->
-    <script src="/assets/js/language/python.js"></script>
+    <!-- <script src="/assets/js/language/python.js"></script> -->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -69,7 +149,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-        <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.js"></script>
     <script src="/static/js/scripts.js"></script>
+
+
 </body>
+
 </html>

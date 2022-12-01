@@ -1,0 +1,149 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(image\ 1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
+    height: 60px;
+    background: #113D83;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 8px;
+    margin-left: 10px;
+    color: #FFFFFF;
+}
+
+.centerBody {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.centerBody button {
+    margin: 15px;
+    width: 140px;
+    height: 50px;
+    background: #38A4CB;
+    font-size: 15px;
+    color: white;
+    border-radius: 30px;
+    /* border-color: rgb(35, 156, 204); */
+}
+
+.centerBody input {
+    margin: 15px;
+    width: 400px;
+    height: 50px;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+a {
+    color: white;
+    padding-right: 10px;
+}
+
+a:hover {
+    color: rgb(202, 202, 202);
+    text-decoration: none;
+}
+
+.code_snippets {
+    margin-top: 400px;
+}
+
+.code_row {
+    /* border: white 1px solid; */
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+.code {
+    background-color: white;
+    border-radius: 10px;
+    min-height: 150px;
+    /* width: inherit; */
+}
+
+.details {
+    color: white;
+    /* border: red 1px solid; */
+    border-radius: 10px;
+    background-color: black;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 5px;
+    /* position: absolute; */
+    /* margin-top: 50%; */
+    /* -ms-transform: translateY(-50%);
+    transform: translateY(-50%); */
+}
+
+.no_result {
+    color: black;
+    font-size: large;
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    opacity: 0.7;
+}
+
+textarea {
+    position: absolute;
+    left: -100%;
+}
+
+/* #copy { */
+/* border: 1px solid white; */
+/* margin-top: 0;
+} */
+
+.pre-wrapper {
+    position: relative;
+}
+
+.pre-wrapper pre {
+    padding-top: 25px;
+}
+
+.pre-wrapper .copy-snippet {
+    border-radius: 0;
+    min-width: 55px;
+    background: none repeat scroll 0 0 transparent;
+    border: 1px solid #bbb;
+    color: #26589F;
+    font-family: 'HELEVETICA', sans-serif;
+    line-height: 1.42rem;
+    margin: 0;
+    padding: 2px 3px 2px 3px;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    position: absolute;
+    background: #ccc;
+    top: 0;
+    right: 0;
+}
+
+.pre-wrapper .copy-snippet:disabled {
+    color: #555;
+}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body>
+    <div class="card-wrapper">
+        <div class="card box">
+            <h1 class="center text-white">Create an Account</h1>
+            <form name="signup_form" id="myform" class="validatedSignupForm">
+                <label for="name">User Name</label>
+                <input type="text" name="name" class="field" required>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" class="field" required>
+                <label for="cpassword">Confirm Password</label>
+                <input id="cpassword" type="password" name="cpassword" class="field" required>
+                <p class="error error--hidden"></p>
+                <input type="submit" value="Sign Up" class="btn field">
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+
+    jQuery('.validatedSignupForm').validate({
+        rules: {
+            password: {
+                minlength: 5
+            },
+            cpassword: {
+                minlength: 5,
+                equalTo: "#password"
+            }
+        }
+    });
+
+    $('button').click(function () {
+        console.log($('.validatedSignupForm').valid());
+    });
+
+</script>
+
+
+{% endblock %}
